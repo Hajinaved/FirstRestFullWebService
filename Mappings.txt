@@ -1,0 +1,9 @@
+Here i will get collection of all the mapping structures
+
+Users related mappings
+
+GET users     					:will return all the users
+GET users/{id}					:will return a specific user
+
+
+POST user   :will add the user from request Body to the List of users
