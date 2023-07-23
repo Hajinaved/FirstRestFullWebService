@@ -4,14 +4,23 @@ import java.time.LocalDate;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-@Validated
-public class User {
-	
-	private int id;
-	@Size(min = 2,message = "NAME MUST BE ATLEAST 2 CHARACTERS")
 
+@Validated
+@Entity(name = "user_details")
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Size(min = 2, message = "NAME MUST BE ATLEAST 2 CHARACTERS")
+	@JsonProperty("Naaam")
 	private String name;
 	@Past(message = "BIRTHDATE MUST BE FROM THE PAST")
 	private LocalDate birthDate;

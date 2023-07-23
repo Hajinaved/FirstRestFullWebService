@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,9 +17,12 @@ public class UserDao {
 
 		list.add(new User(++userCount, "satyam", LocalDate.now()));
 
+	
+
 	}
 
 	public User addUser(User u) {
+		
 		u.setId(++userCount);
 		list.add(u);
 		return u;
@@ -31,7 +35,8 @@ public class UserDao {
 	public List<User> FindAllUsers() {
 		return list;
 	}
+
 	public void deleteByID(int id) {
-		list.removeIf(u->(u.getId()==id));
+		list.removeIf(u -> (u.getId() == id));
 	}
 }

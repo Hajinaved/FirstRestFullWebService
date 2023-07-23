@@ -1,4 +1,4 @@
-package com.haji.Restfulwebservice.user;
+ package com.haji.Restfulwebservice.user;
 
 import java.net.URI;
 import java.util.List;
@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
 @RestController
 public class UserController {
 	@Autowired
-	UserDao ud;
+	UserDaoUsingUserRepo ud;
 
 	@GetMapping("users")
 	public List<User> GetAllUsers() {
@@ -37,7 +37,9 @@ public class UserController {
 
 		return u;
 	}
-
+	
+	
+	
 	@PostMapping("users")
 	public ResponseEntity<User> adduser(@Valid @RequestBody User u) {
 		User saved = ud.addUser(u);
@@ -51,6 +53,17 @@ public class UserController {
 
 		ud.deleteByID(id);
 	}
+	
+	
+	
+	/* HATEOAS NOT WORKING
+	 * @GetMapping("users/{id}") public EntityModel<User>
+	 * returEntityModelledUser(@PathVariable int id){ User u = ud.getUserByID(id);
+	 * if(u==null) { throw new UserNotFoundException("ID : "+id); }
+	 * EntityModel<User> em = EntityModel.of(u);
+	 * 
+	 * }
+	 */
 
 	
 
